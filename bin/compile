@@ -26,3 +26,10 @@ export HOME=$HOME_BACK
 
 # Just build the static site
 bundle exec middleman build --clean --verbose
+
+cat <<EOF >$1/static.json
+{
+  "root": "build/",
+  "clean_urls": true
+}
+EOF
