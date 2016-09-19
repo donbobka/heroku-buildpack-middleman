@@ -4,21 +4,17 @@ This is a build pack for [Middleman](http://middlemanapp.com) that will
 create your static site.
 
 It is cleaner than most Middleman build packs out there because it
-takes advantage of the [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi)
-buildpack to separate out the Ruby and Middleman specific components.
+takes advantage of [Heroku Multiple Buildpacks](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app) to separate out the Ruby, Middleman and Web server specific components.
 
 ## Usage
 
 This build pack is meant to be used with the
-[heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi)
-buildpack. Setup generally goes like this with an existing Heroku app:
+[Heroku Multiple Buildpacks](https://devcenter.heroku.com/articles/using-multiple-buildpacks-for-an-app).
 
-```
-$ heroku config:add BUILDPACK_URL=https://github.com/ddollar/heroku-buildpack-multi.git
-...
-$ cat .buildpacks
-https://github.com/heroku/heroku-buildpack-ruby.git
-https://github.com/hashicorp/heroku-buildpack-middleman.git
+```shell
+heroku buildpacks:add --index 1 heroku/ruby
+heroku buildpacks:add --index 2 https://github.com/donbobka/heroku-buildpack-middleman
+heroku buildpacks:add --index 3 https://github.com/heroku/heroku-buildpack-static
 ```
 
 Then just push!
